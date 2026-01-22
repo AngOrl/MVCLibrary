@@ -26,8 +26,8 @@
 ### 1) Требования
 
 Установить:
-- Visual Studio 2022 (или Rider)
-- .NET SDK (версия проекта, например .NET 6 / .NET 7 / .NET 8)
+- Visual Studio 2022
+- .NET SDK (версия проекта .NET 8)
 - SQL Server Express
 - SQL Server Management Studio — желательно
 
