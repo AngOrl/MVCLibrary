@@ -50,7 +50,7 @@
 "ConnectionStrings": {
   "DefaultConnection": "Data Source=localhost\\SQLEXPRESS;Initial Catalog=Library;Integrated Security=True;Encrypt=False"
 }
-
+```
 ## Запустить проект
 Открыть проект в Visual Studio → нажать Run
 
