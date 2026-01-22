@@ -1,0 +1,67 @@
+﻿@model List<MVCLibrary.Models.Book>
+
+<h4><a asp-controller="Autors" asp-action="Index">Авторы</a></h4>
+<h2>Книги</h2>
+
+
+<div style="margin-bottom: 12px;">
+    <a asp-action="Create">
+        <button type="button">➕ Добавить книгу</button>
+    </a>
+</div>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:100%;">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Авторы</th>
+            <th>Год</th>
+            <th>Издание</th>
+            <th>Страниц</th>
+            <th>Оглавление</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.Title</td>
+            <td>@b.AuthorsDisplay</td>
+            <td>@b.Year</td>
+            <td>@b.Edition</td>
+            <td>@b.NumberPages</td>
+
+                <td>
+                    @if (b.ContentsItems.Count == 0)
+                    {
+                        <span style="color:gray;">(нет)</span>
+                    }
+                    else
+                    {
+                        <details>
+                            <summary>Показать (@b.ContentsItems.Count)</summary>
+
+                            <ul style="margin-top:8px; padding-left:18px;">
+                                @foreach (var item in b.ContentsItems)
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        </details>
+                    }
+                </td>
+
+            <td style="white-space:nowrap;">
+                <a asp-action="Edit" asp-route-id="@b.ID">Редактировать</a>
+
+                <form asp-action="Delete" method="post" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@b.ID" />
+                    <button type="submit" onclick="return confirm('Удалить книгу?')">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

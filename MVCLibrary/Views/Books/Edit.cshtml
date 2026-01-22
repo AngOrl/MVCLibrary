@@ -1,0 +1,74 @@
+﻿@model MVCLibrary.Models.BookEditVm
+
+
+<h2>Редактировать книгу</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ID" />
+
+    <div style="color:red; margin-bottom:10px;">
+        @Html.ValidationSummary()
+    </div>
+
+    <div style="margin-bottom:12px;">
+        <label><b>Авторы (можно выбрать несколько)</b></label><br />
+
+        <select asp-for="SelectedAutorIds"
+                asp-items="Model.AllAutors"
+                multiple
+                size="6"
+                style="width:350px;">
+        </select>
+
+        <div style="margin-top:6px;">
+            <a asp-controller="Autors" asp-action="Create" target="_blank">
+                ➕ Добавить автора (в новой вкладке)
+            </a>
+            <div style="color:gray; font-size:12px;">
+                После добавления автора обнови страницу (F5), чтобы он появился в списке.
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div style="margin-bottom:8px;">
+        <label>Название:</label><br />
+        <input asp-for="Title" style="width:350px;" />
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <label>Год:</label><br />
+        <input asp-for="Year" type="number" style="width:200px;" />
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <label>Издание:</label><br />
+        <input asp-for="Edition" style="width:350px;" />
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <label>Страниц:</label><br />
+        <input asp-for="NumberPages" type="number" style="width:200px;" />
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <label><b>Заменить оглавление (XML файл)</b></label><br />
+        <input type="file" name="contentsFile" accept=".xml,text/xml" />
+        <div style="color:gray; font-size:12px;">
+            Если файл не выбрать — останется текущее значение
+        </div>
+    </div>
+
+    <div style="margin-bottom:10px;">
+        <label>Текущее / вручную:</label><br />
+        <textarea asp-for="Contents" rows="6" style="width:500px;"></textarea>
+    </div>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<p style="margin-top:12px;">
+    <a asp-action="Index">Назад</a>
+</p>

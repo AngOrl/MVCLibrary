@@ -1,0 +1,28 @@
+﻿@model MVCLibrary.Models.AutorEditVm
+
+<h2>Редактировать автора</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ID" />
+
+    <div style="color:red; margin-bottom:10px;">
+        @Html.ValidationSummary()
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <label>Фамилия:</label><br />
+        <input asp-for="Surname" style="width:300px;" />
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <label>Имя:</label><br />
+        <input asp-for="FirstName" style="width:300px;" />
+    </div>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<p style="margin-top:12px;">
+    <a asp-action="Index">Назад</a>
+</p>

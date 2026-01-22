@@ -1,0 +1,49 @@
+﻿@model List<MVCLibrary.Models.Autor>
+
+<h4><a asp-controller="Books" asp-action="Index">Книги</a></h4>
+<h2>Авторы</h2>
+
+<div style="margin-bottom: 12px;">
+    <a asp-action="Create">
+        <button type="button">➕ Добавить автора</button>
+    </a>
+</div>
+
+@if (TempData["Error"] != null)
+{
+    <div style="color:red; margin-bottom:10px;">
+        @TempData["Error"]
+    </div>
+}
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:60%;">
+    <thead>
+        <tr>
+            <th style="width:80px;">ID</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var a in Model)
+    {
+        <tr>
+            <td>@a.ID</td>
+            <td>@a.Surname</td>
+            <td>@a.FirstName</td>
+
+            <td style="white-space:nowrap;">
+                    <a asp-action="Edit" asp-route-id="@a.ID">Редактировать</a>
+
+            <td style="white-space:nowrap;">
+                <form asp-action="Delete" method="post" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@a.ID" />
+                    <button type="submit" onclick="return confirm('Удалить автора?')">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
