@@ -26,8 +26,8 @@
 ### 1) Требования
 
 Установить:
-- Visual Studio 2022
-- .NET SDK (версия проекта .NET 8)
+- Visual Studio 2026
+- .NET SDK (версия проекта .NET 10)
 - SQL Server Express
 - SQL Server Management Studio — желательно
 
